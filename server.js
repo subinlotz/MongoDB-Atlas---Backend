@@ -42,4 +42,14 @@ mongoose
     }
   })
 
+  app.get("/users", async (req,res)=>{
+    try {
+      const users = await signup.find({},"name email");
+      res.status(200).json({ status: "ok", users });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ status: "error", error: "Server error" });
+    }
+  })
+
 app.listen(PORT, () => console.log(`Server listening on PORT: ${PORT}`));
